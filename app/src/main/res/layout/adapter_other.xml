@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_5">
+    <TextView
+            android:id="@+id/adapter_other_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是标题我是标题我是标题我是标题我是标题"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/color_333333"
+            android:layout_toRightOf="@id/adapter_other_image"
+            android:layout_marginRight="@dimen/dp_5"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+    <TextView
+            android:id="@+id/adapter_other_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_10"
+            android:text="推荐视频"
+            android:textColor="#ffffff"
+            android:layout_below="@id/adapter_other_title"
+            android:background="@drawable/img_tag"
+            android:gravity="center"
+            android:layout_alignParentRight="true"/>
+
+    <TextView
+            android:id="@+id/adapter_other_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:text="2018-9-9 22:33:40"
+            android:textColor="@color/color_666666"
+            android:layout_marginRight="@dimen/dp_5"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/adapter_other_type"
+            android:layout_alignParentBottom="true"/>
+
+
+    <ImageView
+            android:id="@+id/adapter_other_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_error_m"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/dp_5"/>
+
+</RelativeLayout>

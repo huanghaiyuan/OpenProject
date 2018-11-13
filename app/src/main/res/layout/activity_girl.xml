@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_ffffff">
+    <include android:id="@+id/girl_top"
+             layout="@layout/layout_top"/>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/girl_refresh"
+            android:layout_below="@id/girl_top">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/girl_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            <include layout="@layout/layout_error"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"/>
+        </RelativeLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_banner"
+            android:layout_alignParentBottom="true"
+    />
+</RelativeLayout>

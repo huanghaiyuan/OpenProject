@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+            android:id="@+id/adapter_viewpager_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_error"
+            android:scaleType="centerCrop"/>
+    <TextView
+            android:id="@+id/adapter_viewpager_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="我是标题"
+            android:textSize="@dimen/sp_14"
+            android:layout_alignTop="@id/adapter_viewpager_image"
+            android:background="#ffffff"
+            android:padding="@dimen/dp_3"
+            android:visibility="gone"/>
+</RelativeLayout>

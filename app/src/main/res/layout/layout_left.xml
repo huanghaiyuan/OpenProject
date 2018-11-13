@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/color_ffffff">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_30"
+            android:textColor="@color/color_666666"
+            android:drawableLeft="@mipmap/icon_app"
+            android:gravity="center"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:paddingLeft="@dimen/dp_30"
+            android:paddingRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="本程序纯属学习，其中使用了《干货集中营》团队的接口数据和阿里的图标，在此表示感谢，谢谢各位大佬，一鞠躬，如涉及版权问题请与我联系，我会立即更正。伊妹儿："
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_999999"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="782941853@qq.com"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_20"/>
+    <TextView
+            android:id="@+id/project_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目地址"
+            android:layout_marginTop="@dimen/dp_20"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_20"/>
+</LinearLayout>
