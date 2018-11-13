@@ -25,6 +25,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.layout_left.*
 import kotlinx.android.synthetic.main.layout_top.*
 
 
@@ -42,6 +43,8 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnCl
         top_more.visibility = View.VISIBLE
         top_more.setOnClickListener(this)
         main_drawlayout_left.setOnClickListener(this)
+        project_url.setText("项目地址：https://github.com/huanghaiyuan/OpenProject")
+        project_url.setOnClickListener(this)
 
         presenter!!.showCategroy()
         main_refresh.setRefreshHeader(BezierRadarHeader(this)
@@ -125,6 +128,12 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnCl
             }
             R.id.main_drawlayout_left->{
                 main_drawlayout.closeDrawer(main_drawlayout_left)
+            }
+            R.id.project_url->{
+                var intent = Intent(this@MainActivity, WebActivity::class.java)
+                intent.putExtra(Constant.URL, "https://github.com/huanghaiyuan/OpenProject")
+                intent.putExtra(Constant.TITLE, "开源项目")
+                this@MainActivity.startActivity(intent)
             }
         }
     }
