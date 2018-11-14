@@ -1,6 +1,6 @@
 package com.hhy.openproject.presenter
 
-import com.hhy.openproject.View.IView
+import com.hhy.openproject.view.IView
 import java.lang.ref.WeakReference
 
 /**

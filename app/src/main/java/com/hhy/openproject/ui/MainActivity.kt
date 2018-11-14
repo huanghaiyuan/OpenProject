@@ -2,21 +2,18 @@ package com.hhy.openproject.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.preference.Preference
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.Gravity
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.gson.Gson
 import com.hhy.openproject.R
-import com.hhy.openproject.View.MainView
+import com.hhy.openproject.view.MainView
 import com.hhy.openproject.adapter.OtherAdapter
 import com.hhy.openproject.adapter.CategoryAdapter
 import com.hhy.openproject.adapter.ViewPagerAdapter
-import com.hhy.openproject.bean.OtherItem
+import com.hhy.openproject.bean.CategoryInfoItem
 import com.hhy.openproject.presenter.MainPresenter
 import com.hhy.openproject.utils.Category
 import com.hhy.openproject.utils.Constant
@@ -29,7 +26,7 @@ import kotlinx.android.synthetic.main.layout_left.*
 import kotlinx.android.synthetic.main.layout_top.*
 
 
-class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnClickListener{
+class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView, View.OnClickListener {
     private var viewPagerAdapter: ViewPagerAdapter? = null
     private var otherAdapter: OtherAdapter? = null
     private var categoryAdapter: CategoryAdapter? = null
@@ -47,13 +44,15 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnCl
         project_url.setOnClickListener(this)
 
         presenter!!.showCategroy()
-        main_refresh.setRefreshHeader(BezierRadarHeader(this)
-            .setEnableHorizontalDrag(true)
-            .setPrimaryColorId(R.color.color_ffffff)
-            .setAccentColorId(R.color.color_44008577)
-        ).setOnRefreshListener(object: OnRefreshListener {
+        main_refresh.setRefreshHeader(
+            BezierRadarHeader(this)
+                .setEnableHorizontalDrag(true)
+                .setPrimaryColorId(R.color.color_ffffff)
+                .setAccentColorId(R.color.color_44008577)
+        ).setOnRefreshListener(object : OnRefreshListener {
             override fun onRefresh(refreshLayout: RefreshLayout) {
-                presenter!!.getToday()
+//                presenter!!.getToday()
+                presenter!!.getRandom()
             }
         }).autoRefresh()
 
@@ -68,8 +67,12 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnCl
         viewPagerAdapter!!.destoryHandler()
     }
 
-    override fun showViewPager(girl: MutableList<OtherItem>) {
-        viewPagerString = Gson().toJson(girl)
+    override fun showViewPager(girl: MutableList<CategoryInfoItem>) {
+        if(girl?.isEmpty() ){
+            girl.addAll(Gson().fromJson(viewPagerString, object : TypeToken<List<CategoryInfoItem>>() {}.type))
+        }else{
+            viewPagerString = Gson().toJson(girl)
+        }
         viewPagerAdapter = ViewPagerAdapter(
             this@MainActivity,
             main_viewPager,
@@ -97,7 +100,7 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnCl
         })
     }
 
-    override fun showToday(resp: MutableList<OtherItem>) {
+    override fun showMainList(resp: MutableList<CategoryInfoItem>) {
         otherString = Gson().toJson(resp)
         main_refresh.finishRefresh()
         otherAdapter = OtherAdapter(windowManager, R.layout.adapter_other, resp)
@@ -115,21 +118,21 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView,View.OnCl
     }
 
 
-    override fun showFail(msg:String) {
+    override fun showFail(msg: String) {
         main_refresh.finishRefresh()
-        showToday(Gson().fromJson(otherString, object : TypeToken<List<OtherItem>>() {}.type))
-        showViewPager(Gson().fromJson(viewPagerString, object : TypeToken<List<OtherItem>>() {}.type))
+        showMainList(Gson().fromJson(otherString, object : TypeToken<List<CategoryInfoItem>>() {}.type))
+        showViewPager(Gson().fromJson(viewPagerString, object : TypeToken<List<CategoryInfoItem>>() {}.type))
     }
 
     override fun onClick(view: View?) {
-        when(view!!.id){
-            R.id.top_more->{
+        when (view!!.id) {
+            R.id.top_more -> {
                 main_drawlayout.openDrawer(main_drawlayout_left)
             }
-            R.id.main_drawlayout_left->{
+            R.id.main_drawlayout_left -> {
                 main_drawlayout.closeDrawer(main_drawlayout_left)
             }
-            R.id.project_url->{
+            R.id.project_url -> {
                 var intent = Intent(this@MainActivity, WebActivity::class.java)
                 intent.putExtra(Constant.URL, "https://github.com/huanghaiyuan/OpenProject")
                 intent.putExtra(Constant.TITLE, "开源项目")

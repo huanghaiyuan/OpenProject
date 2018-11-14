@@ -1,15 +1,11 @@
 package com.hhy.openproject.ui
 
 import android.content.pm.ActivityInfo
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
-import com.hhy.openproject.R
-import com.hhy.openproject.View.IView
+import com.hhy.openproject.view.IView
 import com.hhy.openproject.presenter.BasePresenter
 import com.hhy.openproject.utils.Constant
 import com.hhy.openproject.utils.StatusBarCompat
@@ -17,7 +13,6 @@ import com.qq.e.ads.banner.ADSize
 import com.qq.e.ads.banner.AbstractBannerADListener
 import com.qq.e.ads.banner.BannerView
 import com.qq.e.comm.util.AdError
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.layout_banner.*
 
 /**
@@ -41,10 +36,7 @@ abstract class BaseActivity<V : IView, P : BasePresenter<V>> : AppCompatActivity
 
     abstract fun getSubPresenter(): P?
 
-    override fun onStart() {
-        super.onStart()
-        initBannerAD()
-    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter!!.dettachView()
@@ -63,8 +55,8 @@ abstract class BaseActivity<V : IView, P : BasePresenter<V>> : AppCompatActivity
             }
         })
         banner.loadAD()
-        ad_info.removeAllViews()
-        ad_info.addView(banner)
+        if (ad_info.childCount < 1)
+            ad_info.addView(banner)
         ad_layout.visibility = View.VISIBLE
         ad_close.setOnClickListener(View.OnClickListener {
             ad_layout.visibility = View.GONE

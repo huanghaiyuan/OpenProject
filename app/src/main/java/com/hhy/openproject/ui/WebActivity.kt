@@ -2,16 +2,14 @@ package com.hhy.openproject.ui
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.*
 import com.hhy.openproject.R
-import com.hhy.openproject.View.IView
+import com.hhy.openproject.view.IView
 import com.hhy.openproject.presenter.BasePresenter
 import com.hhy.openproject.utils.Constant
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.header.BezierRadarHeader
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.activity_web.*
 import kotlinx.android.synthetic.main.layout_top.*
 
@@ -35,7 +33,6 @@ class WebActivity : BaseActivity<IView, BasePresenter<IView>>(), View.OnClickLis
 
         webview.getSettings().setJavaScriptEnabled(true)//允许使用js
         webview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE)
-
     }
 
     override fun getSubPresenter(): BasePresenter<IView>? {
@@ -79,6 +76,7 @@ class WebActivity : BaseActivity<IView, BasePresenter<IView>>(), View.OnClickLis
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
             web_progress.visibility = View.GONE
+            initBannerAD()
         }
     }
 }

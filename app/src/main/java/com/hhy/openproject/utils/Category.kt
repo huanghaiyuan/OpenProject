@@ -7,7 +7,7 @@ import com.hhy.openproject.R
  */
 enum class Category(var imgId: Int, var value: String) {
 
-    //    all | OtherItem | iOS | Video | Girl | Expand | 前端 | Recomend | App
+    //    all | CategoryInfoItem | iOS | Video | Girl | Expand | 前端 | Recomend | App
     ALL(R.drawable.img_all, "all"),
     ANDROID(R.drawable.img_android, "Android"),
     iOS(R.drawable.img_ios, "iOS"),

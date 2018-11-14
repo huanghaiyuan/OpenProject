@@ -6,21 +6,21 @@ import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.hhy.openproject.R
-import com.hhy.openproject.bean.OtherItem
+import com.hhy.openproject.bean.CategoryInfoItem
 import com.hhy.openproject.ui.GirlActivity
 
 /**
  * Created by huanghaiyuan on 2018/11/3.
  */
-class GirlAdapter : BaseQuickAdapter<OtherItem, BaseViewHolder> {
+class GirlAdapter : BaseQuickAdapter<CategoryInfoItem, BaseViewHolder> {
     private var activiry: GirlActivity? = null
 
-    constructor(activiry: GirlActivity?, layoutResId: Int, data: MutableList<OtherItem>?) : super(layoutResId, data) {
+    constructor(activiry: GirlActivity?, layoutResId: Int, data: MutableList<CategoryInfoItem>?) : super(layoutResId, data) {
         this.activiry = activiry
     }
 
 
-    override fun convert(helper: BaseViewHolder, item: OtherItem) {
+    override fun convert(helper: BaseViewHolder, item: CategoryInfoItem) {
         Glide.with(mContext)
             .load(item.url)
             .apply(

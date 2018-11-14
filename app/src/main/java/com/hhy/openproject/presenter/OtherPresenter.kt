@@ -1,9 +1,8 @@
 package com.hhy.openproject.presenter
 
 import android.content.Context
-import android.widget.Toast
-import com.hhy.openproject.View.OtherView
-import com.hhy.openproject.bean.GirlResp
+import com.hhy.openproject.bean.CategoryInfoResp
+import com.hhy.openproject.view.OtherView
 import com.hhy.openproject.modle.OtherModle
 import com.hhy.openproject.utils.JsonCallback
 import com.lzy.okgo.model.Response
@@ -21,8 +20,8 @@ class OtherPresenter : BasePresenter<OtherView> {
     }
 
     fun showOther(category: String, pageCount: Int, page: Int) {
-        modle!!.getOther(object : JsonCallback<GirlResp>() {
-            override fun onSuccess(response: Response<GirlResp>?) {
+        modle!!.getOther(object : JsonCallback<CategoryInfoResp>() {
+            override fun onSuccess(response: Response<CategoryInfoResp>?) {
                 if (response!!.body() != null && response!!.body()!!.results != null && !response!!.body()!!.results.isEmpty()) {
                     getView()!!.showOther(response!!.body()!!.results)
                 } else if (page < 2) {
@@ -30,7 +29,7 @@ class OtherPresenter : BasePresenter<OtherView> {
                 }
             }
 
-            override fun onError(response: Response<GirlResp>?) {
+            override fun onError(response: Response<CategoryInfoResp>?) {
                 super.onError(response)
                 getView()!!.showFail("网络异常，请稍后重试")
             }

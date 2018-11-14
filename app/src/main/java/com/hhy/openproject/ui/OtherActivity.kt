@@ -7,17 +7,17 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.hhy.openproject.R
-import com.hhy.openproject.View.OtherView
+import com.hhy.openproject.view.OtherView
 import com.hhy.openproject.adapter.OtherAdapter
-import com.hhy.openproject.bean.OtherItem
+import com.hhy.openproject.bean.CategoryInfoItem
 import com.hhy.openproject.presenter.OtherPresenter
 import com.hhy.openproject.utils.Constant
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_other.*
+import kotlinx.android.synthetic.main.layout_banner.*
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_top.*
 
@@ -37,6 +37,7 @@ class OtherActivity : BaseActivity<OtherView, OtherPresenter>(), OtherView, View
         top_title.setText(title)
 //        presenter!!.showOther(title!!, pageCount, page)
         top_back.setOnClickListener(this)
+        error_layout.setOnClickListener(this)
 
         other_refresh.setRefreshHeader(
             BezierRadarHeader(this)
@@ -61,8 +62,9 @@ class OtherActivity : BaseActivity<OtherView, OtherPresenter>(), OtherView, View
     }
 
 
-    override fun showOther(list: MutableList<OtherItem>) {
+    override fun showOther(list: MutableList<CategoryInfoItem>) {
         error_layout.visibility = View.GONE
+        initBannerAD()
         if (adapter == null) {
             adapter = OtherAdapter(windowManager, R.layout.adapter_other, list)
             other_recycler.layoutManager = LinearLayoutManager(this)
@@ -85,8 +87,8 @@ class OtherActivity : BaseActivity<OtherView, OtherPresenter>(), OtherView, View
         adapter!!.setOnItemClickListener(object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 var intent = Intent(this@OtherActivity, WebActivity::class.java)
-                intent.putExtra(Constant.URL, (adapter!!.data.get(position) as OtherItem).url)
-                intent.putExtra(Constant.TITLE, (adapter!!.data.get(position) as OtherItem).desc)
+                intent.putExtra(Constant.URL, (adapter!!.data.get(position) as CategoryInfoItem).url)
+                intent.putExtra(Constant.TITLE, (adapter!!.data.get(position) as CategoryInfoItem).desc)
                 this@OtherActivity.startActivity(intent)
             }
         })
@@ -98,14 +100,21 @@ class OtherActivity : BaseActivity<OtherView, OtherPresenter>(), OtherView, View
         } else {
             other_refresh.finishRefresh()
         }
-        error_layout.visibility = View.VISIBLE
-        error_msg.setText(msg)
+
+        if (adapter == null || adapter?.data == null || adapter!!.data.isEmpty()) {
+            error_layout.visibility = View.VISIBLE
+            error_msg.setText(msg)
+        }
+        ad_layout.visibility = View.GONE
     }
 
     override fun onClick(view: View?) {
         when (view!!.id) {
             R.id.top_back -> {
                 finish()
+            }
+            R.id.error_layout -> {
+
             }
         }
     }

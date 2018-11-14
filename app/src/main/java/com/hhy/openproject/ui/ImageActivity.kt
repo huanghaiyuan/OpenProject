@@ -1,19 +1,15 @@
 package com.hhy.openproject.ui
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.hhy.openproject.R
-import com.hhy.openproject.R.id.image_view
-import com.hhy.openproject.View.IView
+import com.hhy.openproject.view.IView
 import com.hhy.openproject.presenter.BasePresenter
 import com.hhy.openproject.utils.Constant
-import kotlinx.android.synthetic.main.activity_girl.*
 import kotlinx.android.synthetic.main.activity_image.*
 
 /**
@@ -39,6 +35,7 @@ class ImageActivity : BaseActivity<IView, BasePresenter<IView>>() {
                     .placeholder(R.drawable.ic_error_m)
             )
             .into(image_view)
+        initBannerAD()
     }
 
     override fun getSubPresenter(): BasePresenter<IView>? {

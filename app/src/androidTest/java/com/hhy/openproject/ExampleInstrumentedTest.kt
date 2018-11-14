@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 /**
- * Instrumented test, which will execute on an OtherItem device.
+ * Instrumented test, which will execute on an CategoryInfoItem device.
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */

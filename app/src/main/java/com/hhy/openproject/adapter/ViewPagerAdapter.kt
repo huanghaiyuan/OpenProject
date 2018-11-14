@@ -16,7 +16,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hhy.openproject.R
-import com.hhy.openproject.bean.OtherItem
+import com.hhy.openproject.bean.CategoryInfoItem
 import com.hhy.openproject.ui.ImageActivity
 import com.hhy.openproject.utils.Constant
 
@@ -24,7 +24,7 @@ import com.hhy.openproject.utils.Constant
  * Created by huanghaiyuan on 2018/11/1.
  */
 class ViewPagerAdapter : PagerAdapter, ViewPager.OnPageChangeListener {
-    private val datas: MutableList<OtherItem>
+    private val datas: MutableList<CategoryInfoItem>
     private var mViews: MutableList<View> = mutableListOf()
     private var context: Context
     private var viewPager: ViewPager
@@ -37,7 +37,7 @@ class ViewPagerAdapter : PagerAdapter, ViewPager.OnPageChangeListener {
     private var tmpX: Float = 0f
 
     @SuppressLint("ClickableViewAccessibility")
-    constructor(context: Context, pager: ViewPager, indicatorLayout: LinearLayout, datas: MutableList<OtherItem>) {
+    constructor(context: Context, pager: ViewPager, indicatorLayout: LinearLayout, datas: MutableList<CategoryInfoItem>) {
         this.datas = datas
         this.context = context
         this.viewPager = pager
